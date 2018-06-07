@@ -1,0 +1,26 @@
+{
+    "name": "adamdburton/mattermost-webhook-php",
+    "description": "A cute little wrapper for sending responses to Mattermost webhooks.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adam Burton",
+            "email": "adam@burt0n.net"
+        }
+    ],
+    "require": {
+        "php-http/client-implementation": "^1.0"
+    },
+    "require-dev": {
+        "php-http/mock-client": "^1.0",
+        "php-http/message": "^1.0",
+        "guzzlehttp/psr7": "^1.0",
+        "phpunit/phpunit": "^7"
+    },
+    "autoload": {
+        "psr-4": {
+            "AdamDBurton\\Mattermost\\": "src"
+        }
+    }
+}
