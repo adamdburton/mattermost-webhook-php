@@ -74,6 +74,8 @@ class Attachment
 		$callback($field);
 
 		$this->fields[] = $field->getData();
+
+		return $this;
 	}
 
 	public function image($url)
