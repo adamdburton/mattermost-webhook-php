@@ -10,11 +10,11 @@
         }
     ],
     "require": {
-        "php-http/client-implementation": "^1.0"
+        "php-http/client-implementation": "^1.0",
+        "php-http/message": "^1.0"
     },
     "require-dev": {
         "php-http/mock-client": "^1.0",
-        "php-http/message": "^1.0",
         "guzzlehttp/psr7": "^1.0",
         "phpunit/phpunit": "^7"
     },
