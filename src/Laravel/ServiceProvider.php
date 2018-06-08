@@ -5,7 +5,7 @@ namespace AdamDBurton\Mattermost\Laravel;
 use AdamDBurton\Mattermost\Mattermost;
 use Http\Discovery\HttpClientDiscovery;
 
-class ServiceProvider extends Illuminate\Support\ServiceProvider
+class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
 	protected $defer = false;
 
