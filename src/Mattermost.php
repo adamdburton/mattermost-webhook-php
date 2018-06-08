@@ -52,15 +52,13 @@ class Mattermost
 	{
 		$url = $webhook ?: $this->config['webhook'];
 
-		$request = $this->httpClientFactory->createRequest('POST', $url, [
-				'form_params' => [
-					'payload' => json_encode($data)
-				]
-			]
-		);
+		$request = $this->httpClientFactory->createRequest('POST', $url, [], json_encode($data));
 
-		$response = $this->httpClient->sendRequest($request)->getBody()->getContents();
+		$response = $this->httpClient
+			->sendRequest($request)
+			->getBody()
+			->getContents();
 
-		return $response == 'ok' ? $response : json_decode($response, true);
+		return $response == 'ok' ? true : json_decode($response, true);
 	}
 }
