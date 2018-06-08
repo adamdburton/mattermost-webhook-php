@@ -22,5 +22,15 @@
         "psr-4": {
             "AdamDBurton\\Mattermost\\": "src"
         }
-    }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AdamDBurton\\Mattermost\\Laravel\\ServiceProvider"
+            ],
+            "aliases": {
+                "Mattermost": "AdamDBurton\\Mattermost\\Laravel\\Facade"
+            }
+        }
+    },
 }

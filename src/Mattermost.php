@@ -23,7 +23,7 @@ class Mattermost
 	{
 		if(!isset($config['webhook']))
 		{
-			throw new \Exception('Webhook is required');
+			throw new \Exception('Webhook is required.');
 		}
 
 		$this->config = $config;

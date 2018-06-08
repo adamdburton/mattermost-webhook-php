@@ -118,7 +118,7 @@ final class MattermostTest extends TestCase
 				200,
 				null,
 				[],
-				file_get_contents(__DIR__ . '/responses/success.txt')
+				'ok'
 			)
 		);
 
