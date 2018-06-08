@@ -16,7 +16,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 
 		$this->app->singleton(Mattermost::class, function ($app)
 		{
-			return new Mattermost($app['config']->get('mattermost-webhook'), HttpClientDiscovery::find());
+			return new Mattermost($app['config']->get('mattermost-webhook'));
 		});
 	}
 

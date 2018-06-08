@@ -5,7 +5,9 @@ namespace AdamDBurton\Mattermost;
 use AdamDBurton\Mattermost\Types\Message;
 
 use Http\Client\HttpClient;
+use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\MessageFactoryDiscovery;
+use Http\Message\MessageFactory;
 
 class Mattermost
 {
@@ -17,9 +19,10 @@ class Mattermost
 	 * Mattermost constructor.
 	 * @param array $config
 	 * @param HttpClient $httpClient
+	 * @param MessageFactory $httpClientFactory
 	 * @throws \Exception
 	 */
-	public function __construct($config, HttpClient $httpClient)
+	public function __construct($config, $httpClient = null, $httpClientFactory = null)
 	{
 		if(!isset($config['webhook']))
 		{
@@ -27,8 +30,8 @@ class Mattermost
 		}
 
 		$this->config = $config;
-		$this->httpClient = $httpClient;
-		$this->httpClientFactory = MessageFactoryDiscovery::find();
+		$this->httpClient = $httpClient ?: HttpClientDiscovery::find();
+		$this->httpClientFactory = $httpClientFactory ?: MessageFactoryDiscovery::find();
 	}
 
 	/**
