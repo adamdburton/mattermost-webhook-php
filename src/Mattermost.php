@@ -4,6 +4,7 @@ namespace AdamDBurton\Mattermost;
 
 use AdamDBurton\Mattermost\Types\Message;
 
+use Http\Client\Exception;
 use Http\Client\HttpClient;
 use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\MessageFactoryDiscovery;
@@ -46,7 +47,7 @@ class Mattermost
 	 * @param $data
 	 * @param null $webhook
 	 * @return mixed|string
-	 * @throws \Http\Client\Exception
+	 * @throws Exception
 	 */
 	public function send($data, $webhook = null)
 	{
@@ -54,10 +55,17 @@ class Mattermost
 
 		$request = $this->httpClientFactory->createRequest('POST', $url, [], json_encode($data));
 
-		$response = $this->httpClient
-			->sendRequest($request)
-			->getBody()
-			->getContents();
+		try
+		{
+			$response = $this->httpClient
+				->sendRequest($request)
+				->getBody()
+				->getContents();
+		}
+		catch(\Exception $e)
+		{
+			return false;
+		}
 
 		return $response == 'ok' ? true : json_decode($response, true);
 	}
