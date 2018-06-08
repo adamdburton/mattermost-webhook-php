@@ -13,7 +13,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 		$configPath = __DIR__ . '/../../config/mattermost-webhook.php';
 		$this->mergeConfigFrom($configPath, 'mattermost-webhook');
 
-		$this->app->singleton(Mattermost::class, function ($app)
+		$this->app->singleton('mattermost', function ($app)
 		{
 			return new Mattermost($app['config']->get('mattermost-webhook'));
 		});
