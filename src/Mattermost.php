@@ -43,12 +43,6 @@ class Mattermost
 		return new Message($this);
 	}
 
-	/**
-	 * @param $data
-	 * @param null $webhook
-	 * @return mixed|string
-	 * @throws Exception
-	 */
 	public function send($data, $webhook = null)
 	{
 		$url = $webhook ?: $this->config['webhook'];
@@ -63,6 +57,10 @@ class Mattermost
 				->getContents();
 		}
 		catch(\Exception $e)
+		{
+			return false;
+		}
+		catch(Exception $e)
 		{
 			return false;
 		}
