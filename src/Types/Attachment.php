@@ -2,6 +2,8 @@
 
 namespace AdamDBurton\Mattermost\Types;
 
+use Closure;
+
 class Attachment
 {
 	protected $data = [];
@@ -55,16 +57,29 @@ class Attachment
 
 		$callback($author);
 
-		return $this->data = array_merge($this->data, $author->getData());
+		$this->data = array_merge($this->data, $author->getData());
+
+		return $this;
 	}
 
 	public function title($callback)
 	{
-		$title = new Title;
+		if($callback instanceof Closure)
+		{
+			$this->data['title'] = $text;
 
-		$callback($title);
+			return $this;
+		}
+		else
+		{
+			$title = new Title;
 
-		return $this->data = array_merge($this->data, $title->getData());
+			$callback($title);
+
+			$this->data = array_merge($this->data, $title->getData());
+		}
+
+		return $this;
 	}
 
 	public function field($callback)
@@ -111,7 +126,9 @@ class Attachment
 
 		$callback($footer);
 
-		return $this->data = array_merge($this->data, $footer->getData());
+		$this->data = array_merge($this->data, $footer->getData());
+
+		return $this;
 	}
 
 	public function getData()
